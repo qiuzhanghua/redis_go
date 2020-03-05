@@ -18,12 +18,18 @@ func main() {
 	//var r = client.HGetAll("company:1")
 	//fmt.Println(r)
 	db1, err := sql.Open("mysql", "app:app@/app")
+	if err != nil {
+		return
+	}
 	defer db1.Close()
 	err = db1.Ping()
 	fmt.Println(err)
 
 	db2, err := sql.Open("postgres",
 		"host=localhost port=5432 user=app password=app dbname=app sslmode=disable")
+	if err != nil {
+		return
+	}
 	defer db2.Close()
 	err = db2.Ping()
 	fmt.Println(err)
